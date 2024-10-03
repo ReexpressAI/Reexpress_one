@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22222" systemVersion="23B5046f" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Attributes" representedClassName="Attributes" syncable="YES">
+        <attribute name="vector" optional="YES" attributeType="Binary"/>
+        <relationship name="document" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Document" inverseName="attributes" inverseEntity="Document"/>
+    </entity>
+    <entity name="Dataset" representedClassName="Dataset" syncable="YES">
+        <attribute name="count" optional="YES" attributeType="Integer 64" derived="YES" derivationExpression="documents.@count" usesScalarValueType="YES"/>
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="internalName" attributeType="String"/>
+        <attribute name="userSpecifiedName" optional="YES" attributeType="String"/>
+        <relationship name="documents" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Document" inverseName="dataset" inverseEntity="Document"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="DatasetGlobalControl" representedClassName="DatasetGlobalControl" syncable="YES">
+        <attribute name="defaultPrompt" optional="YES" attributeType="String"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="modelGroup" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="modelTaskType" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="nextAvailableDatasetId" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="numberOfClasses" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="numberOfEvalSets" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="version" optional="YES" attributeType="String"/>
+        <relationship name="labelNames" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="LabelName" inverseName="datasetGlobalControl" inverseEntity="LabelName"/>
+    </entity>
+    <entity name="Document" representedClassName="Document" syncable="YES">
+        <attribute name="dateAdded" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="document" attributeType="String"/>
+        <attribute name="documentWithPromptDocumentStartRangeIndex" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="featureInconsistentWithDocLevelPredictedClass" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="featureInconsistentWithDocLevelSentenceRangeEnd" optional="YES" attributeType="Integer 64" defaultValueString="-1" usesScalarValueType="YES"/>
+        <attribute name="featureInconsistentWithDocLevelSentenceRangeStart" optional="YES" attributeType="Integer 64" valueTransformerName="Range&lt;String.Index&gt;" defaultValueString="-1" usesScalarValueType="YES"/>
+        <attribute name="featureInconsistentWithDocLevelSoftmaxVal" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="featureMatchesDocLevelSentenceRangeEnd" optional="YES" attributeType="Integer 64" defaultValueString="-1" usesScalarValueType="YES"/>
+        <attribute name="featureMatchesDocLevelSentenceRangeStart" optional="YES" attributeType="Integer 64" valueTransformerName="Range&lt;String.Index&gt;" defaultValueString="-1" usesScalarValueType="YES"/>
+        <attribute name="featureMatchesDocLevelSoftmaxVal" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="group" attributeType="String"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="info" attributeType="String"/>
+        <attribute name="label" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="lastModified" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="lastViewed" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="modelUUID" optional="YES" attributeType="String"/>
+        <attribute name="modified" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="prediction" optional="YES" attributeType="Integer 64" defaultValueString="-1" usesScalarValueType="YES"/>
+        <attribute name="prompt" optional="YES" attributeType="String"/>
+        <attribute name="tokenizationCutoffRangeStart" optional="YES" attributeType="Integer 64" defaultValueString="-1" usesScalarValueType="YES"/>
+        <attribute name="viewed" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <relationship name="attributes" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Attributes" inverseName="document" inverseEntity="Attributes"/>
+        <relationship name="dataset" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Dataset" inverseName="documents" inverseEntity="Dataset"/>
+        <relationship name="embedding" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Embedding" inverseName="document" inverseEntity="Embedding"/>
+        <relationship name="exemplar" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Exemplar" inverseName="document" inverseEntity="Exemplar"/>
+        <relationship name="features" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Features" inverseName="document" inverseEntity="Features"/>
+        <relationship name="uncertainty" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Uncertainty" inverseName="document" inverseEntity="Uncertainty"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="Embedding" representedClassName="Embedding" syncable="YES">
+        <attribute name="embedding" optional="YES" attributeType="Binary"/>
+        <attribute name="id" attributeType="String"/>
+        <relationship name="document" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Document" inverseName="embedding" inverseEntity="Document"/>
+    </entity>
+    <entity name="Exemplar" representedClassName="Exemplar" syncable="YES">
+        <attribute name="exemplar" optional="YES" attributeType="Binary"/>
+        <attribute name="exemplarCompressed" optional="YES" attributeType="Binary"/>
+        <relationship name="document" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Document" inverseName="exemplar" inverseEntity="Document"/>
+    </entity>
+    <entity name="Features" representedClassName="Features" syncable="YES">
+        <attribute name="sentenceExemplarsCompressed" optional="YES" attributeType="Binary"/>
+        <attribute name="sentenceRangeEndVector" optional="YES" attributeType="Binary"/>
+        <attribute name="sentenceRangeStartVector" optional="YES" attributeType="Binary"/>
+        <attribute name="startingSentenceArrayIndexOfDocument" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="document" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Document" inverseName="features" inverseEntity="Document"/>
+    </entity>
+    <entity name="LabelName" representedClassName="LabelName" syncable="YES">
+        <attribute name="label" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="userSpecifiedName" optional="YES" attributeType="String"/>
+        <relationship name="datasetGlobalControl" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DatasetGlobalControl" inverseName="labelNames" inverseEntity="DatasetGlobalControl"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="label"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="ModelControl" representedClassName="ModelControl" syncable="YES">
+        <attribute name="currentMaxMetric" optional="YES" attributeType="Float" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="indexModelUUID" optional="YES" attributeType="String"/>
+        <attribute name="key0" optional="YES" attributeType="Binary"/>
+        <attribute name="key0b" optional="YES" attributeType="Binary"/>
+        <attribute name="key1" optional="YES" attributeType="Binary"/>
+        <attribute name="key1b" optional="YES" attributeType="Binary"/>
+        <attribute name="keyModelUUID" optional="YES" attributeType="String"/>
+        <attribute name="maxMetric" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="minLoss" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="state" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="timestampLastModified" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="trainingProcessDataTrainLoss" optional="YES" attributeType="Binary"/>
+        <attribute name="trainingProcessDataTrainMetric" optional="YES" attributeType="Binary"/>
+        <attribute name="trainingProcessDataValidLoss" optional="YES" attributeType="Binary"/>
+        <attribute name="trainingProcessDataValidMetric" optional="YES" attributeType="Binary"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="QCategoryCD" representedClassName="QCategoryCD" syncable="YES">
+        <attribute name="qCategory" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="thresholds" optional="YES" attributeType="Binary"/>
+        <attribute name="tpD0MaxByClass" optional="YES" attributeType="Binary"/>
+        <attribute name="tpD0MedianByClass" optional="YES" attributeType="Binary"/>
+        <relationship name="uncertaintyModelControl" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UncertaintyModelControl" inverseName="qCategories" inverseEntity="UncertaintyModelControl"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="qCategory"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="QDFCategoryCD" representedClassName="QDFCategoryCD" syncable="YES">
+        <attribute name="compositionCategory" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="distanceCategory" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="minDistribution" optional="YES" attributeType="Binary"/>
+        <attribute name="prediction" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="predictionProbability" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="qCategory" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="sizeOfCategory" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="uncertaintyModelControl" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UncertaintyModelControl" inverseName="qdfCategories" inverseEntity="UncertaintyModelControl"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="Uncertainty" representedClassName="Uncertainty" syncable="YES">
+        <attribute name="d0" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="f" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="q" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="qdfCategoryID" optional="YES" attributeType="String"/>
+        <attribute name="softmax" optional="YES" attributeType="Binary"/>
+        <attribute name="topKdistances" optional="YES" attributeType="Binary"/>
+        <attribute name="topKIndexesAsDocumentIds" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer" customClassName="[String]"/>
+        <attribute name="uncertaintyModelUUID" optional="YES" attributeType="String"/>
+        <relationship name="document" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Document" inverseName="uncertainty" inverseEntity="Document"/>
+    </entity>
+    <entity name="UncertaintyModelControl" representedClassName="UncertaintyModelControl" syncable="YES">
+        <attribute name="alpha" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="conformalThresholdTolerance" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="indexModelUUID" optional="YES" attributeType="String"/>
+        <attribute name="needsRefresh" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="qMax" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="uncertaintyModelUUID" optional="YES" attributeType="String"/>
+        <attribute name="validKnownLabelsMaxD0" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="validKnownLabelsMinD0" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="qCategories" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="QCategoryCD" inverseName="uncertaintyModelControl" inverseEntity="QCategoryCD"/>
+        <relationship name="qdfCategories" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="QDFCategoryCD" inverseName="uncertaintyModelControl" inverseEntity="QDFCategoryCD"/>
+    </entity>
+</model>

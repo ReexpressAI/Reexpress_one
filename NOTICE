@@ -1,5 +1,6 @@
 Reexpress one
 Copyright 2023- Reexpress AI, Inc.
 
-This product includes software developed at
-Reexpress AI, Inc. (https://re.express/).
+This product includes software developed at Reexpress AI, Inc. (https://re.express/).
+
+This product incorporates a subset of weights from Flan-T5 (xl, large, and base) and mT0-base. These weights were distributed via Hugging Face, Inc. and Google LLC via the Apache License 2.0.
