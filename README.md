@@ -16,7 +16,7 @@ Compilation requires XCode (last tested with Xcode Version 15), macOS 14 (Sonoma
 > [!CAUTION]
 > Note that compilation will complete with warnings on macOS 15 (Sequoia) with Xcode Version 16, but the application will not be stable and there will be some visual artifacts (e.g., narrow modal views) due to changes introduced in macOS 15.
 
-Before compiling, you need the `.mlpackage` neural networks, which contain a fusion of a subset of weights from the encoder and decoder of Flan-T5 (xl, large, and base) and mT0-base; reduction operators to mask and subset the hidden states (for training and inference, which also use the Accelerate framework's BNNS library); and an L2 distance indexer. Collectively these are about 5 GB. They are included in the [release on GitHub](https://github.com/ReexpressAI/Reexpress_one/releases), but are excluded from the code repo by the .gitignore file.
+Before compiling, you need to download the `.mlpackage` neural networks, which contain a fusion of a subset of weights from the encoder and decoder of Flan-T5 (xl, large, and base) and mT0-base; reduction operators to mask and subset the hidden states (for training and inference, which also use the Accelerate framework's BNNS library); and an L2 distance indexer. Collectively these are about 5 GB and are [here for download](https://drive.google.com/file/d/1dVArdmZqDxiFLBjZXH77ROIdxcALeetk/view?usp=sharing). Download, unzip, and add the resulting MLModels folder to the project. (Note that the .gitignore will exclude these files from the repo.)
 
 ## Program Documentation
 
