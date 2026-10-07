@@ -2,7 +2,7 @@
 
 ![Reexpress one](compare.png)
 
-The first act of Reexpress AI was a depth-first, straight-shot effort to address the output verification problem for models with non-identifiable parameters. That successfully resulted in Similarity-Distance-Magnitude (SDM) Calibration, a novel decoupling of aleatoric (irreducible) uncertainty and epistemic (reducible) uncertainty. The conclusion of this line of work is available [here](http://arxiv.org/abs/2509.12760). 
+The first act of Reexpress AI was a depth-first, straight-shot effort to address the output verification problem for models with non-identifiable parameters. That successfully resulted in Similarity-Distance-Magnitude (SDM) Calibration, a novel decoupling of aleatoric (irreducible) uncertainty and epistemic (reducible) uncertainty. The conclusion of this line of work is available [here](https://arxiv.org/abs/2509.12760). 
 
 `Reexpress one` was a no-code, visual data analysis platform for macOS that implemented a basic decomposition of epistemic uncertainty for classification tasks in service of our broader research program to obtain reliable and introspectable predictions over LLMs, and to study the behavior of high-dimensional objects, more generally.
 
